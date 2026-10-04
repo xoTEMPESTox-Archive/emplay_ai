@@ -1,0 +1,29 @@
+{
+  "company_name": "Apex Enterprise Technologies",
+  "authorized_manufacturers": [
+    "Dell",
+    "Lenovo",
+    "HP",
+    "Google for Education",
+    "Acer"
+  ],
+  "max_bonding_capacity_usd": 1000000,
+  "min_delivery_window_days": 15,
+  "max_delivery_window_days": 60,
+  "provides_installation_services": true,
+  "provides_oem_warranty": true,
+  "supported_submission_types": [
+    "electronic portal",
+    "electronic",
+    "sealed bid",
+    "sealed paper",
+    "email"
+  ],
+  "affidavits_compliant": true,
+  "certifications": [
+    "ISO 9001",
+    "SOC 2 Type II"
+  ],
+  "min_contract_term_months": 1,
+  "max_contract_term_months": 60
+}
