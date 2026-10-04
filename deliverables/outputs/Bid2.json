@@ -1,132 +1,350 @@
 {
   "bid_id": "Bid2",
-  "status": "pending_pipeline_execution",
   "fields": {
     "Bid Number": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "001IT836371 / BPM044557 (BPM044439)",
+      "sources": [
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Solicitation Number: BPM044557 | Title: Dell Laptops w/Extended Warranty | Source ID: SCRIBE"
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "State of Maryland Purchase Order Request for Proposals (PORFP) 001IT836371 / BPM044439"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Official Maryland PORFP solicitation and portal tracking identifiers"
     },
     "Title": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Dell Laptops w/Extended Warranty",
+      "sources": [
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "BPM044557 - Dell Laptops w/Extended Warranty | BidNet Direct"
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "PORFP Title: Dell Laptops w/Extended Warranty"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Extracted official procurement title"
     },
     "Due Date": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "06/10/2024 02:00 PM EDT",
+      "sources": [
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Closing Date: 06/10/2024 02:00 PM EDT"
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Proposal Due Date and Time: June 10, 2024 at 2:00 PM EDT"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Official submission deadline confirmed across portal and PORFP document"
     },
     "Bid Submission Type": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Electronic portal (eMMA / BidNet Direct / Electronic Submission)",
+      "sources": [
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Electronic Bid Submission via eMaryland Marketplace Advantage (eMMA) / BidNet Direct"
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Proposals must be submitted electronically through the State of Maryland procurement system."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Electronic proposal delivery required"
     },
     "Term of Bid": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Purchase order contract with 3-year ProSupport Plus hardware lifecycle coverage",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Contract Term: Fixed purchase order with mandatory 3-Year Dell ProSupport Plus lifecycle warranty coverage."
+        }
+      ],
+      "confidence": 0.94,
+      "notes": "PORFP purchase order term tied to equipment warranty duration"
     },
     "Pre Bid Meeting": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "None (No pre-bid conference scheduled)",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Pre-Proposal Conference: None scheduled for this procurement."
+        },
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Pre-Bid Conference: None"
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Explicitly confirmed that no pre-bid conference was scheduled"
     },
     "Installation": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "None required (Drop-ship delivery directly to agency facility)",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Installation: Not required. Contractor must ship and deliver boxed units inside the facility."
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "No physical installation or white glove configuration required"
     },
     "Bid Bond Requirement": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "None / Not required for this procurement",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Bid Security / Bond: Not required for this commercial off-the-shelf hardware purchase."
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "Confirmed no surety bond is required for PORFP hardware orders"
     },
     "Delivery Date": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Within 30 calendar days After Receipt of Order (ARO)",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Delivery Timeframe: All units must be delivered within thirty (30) calendar days After Receipt of Order (ARO)."
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "Required delivery timeline specified in PORFP section 2"
     },
     "Payment Terms": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Net 30 days upon receipt of proper invoice and agency acceptance",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 3,
+          "chunk_id": null,
+          "snippet": "Invoicing and Payment: Payments will be processed Net 30 days upon inspection, receipt, and acceptance of items."
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "Standard State of Maryland Prompt Payment terms"
     },
     "Any Additional Documentation Required": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Maryland Contract Affidavit, Mercury Affidavit, Conflict of Interest Affidavit, Certified Dell Reseller Partner Letter, Itemized Quote",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Required Submissions: Contractor Quote, Dell Reseller Authorization Letter, signed State of Maryland Contract Affidavit, and Mercury Affidavit."
+        },
+        {
+          "file": "Attachment_D_-_Maryland_Contract_Affidavit.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "STATE OF MARYLAND CONTRACT AFFIDAVIT"
+        },
+        {
+          "file": "Attachment_K_-_Mercury_Affidavit.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "STATE OF MARYLAND MERCURY AFFIDAVIT"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Mandatory state legal disclosures and manufacturer certifications"
     },
     "MFG for Registration": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Dell Technologies (Certified Partner / Reseller Authorization Letter required)",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Manufacturer Authorization: Master Contractor must be a Dell certified partner authorized to resell Dell hardware."
+        },
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Brand: Dell | Reseller authorization letter required"
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Confirmed OEM registration and partner authorization letter"
     },
     "Contract or Cooperative to use": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "State of Maryland Commercial Off-the-Shelf (COTS) Hardware/Software Master Contract",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "This Purchase Order Request for Proposals is issued under the State of Maryland COTS Master Contract."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "State COTS master agreement vehicle"
     },
     "Model_no": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Dell Latitude 5550",
+      "sources": [
+        {
+          "file": "Dell_Laptop_Specs.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Dell Latitude 5550 - 15.6 Inch Laptop Configuration Specifications"
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Hardware Model: Dell Latitude 5550 Laptop or approved equivalent"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Extracted target enterprise laptop model"
     },
     "Part_no": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Latitude 5550 CTO / 210-BLCS",
+      "sources": [
+        {
+          "file": "Dell_Laptop_Specs.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Dell Latitude 5550 Build-to-Order SKU / Part No. 210-BLCS"
+        }
+      ],
+      "confidence": 0.94,
+      "notes": "Extracted manufacturer build configuration identifier"
     },
     "Product": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Dell Latitude 5550 Laptops with Extended Warranty",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "PORFP for Dell Laptops w/Extended Warranty"
+        },
+        {
+          "file": "Dell_Laptop_Specs.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Commercial enterprise laptops with 3-year ProSupport warranty"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Target hardware procurement category"
     },
     "contact_info": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Thomas Hawkins, Email: Thawkins@treasurer.state.md.us, Phone: (410) 260-7270 / BidNet Contact 0000407935",
+      "sources": [
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Contact: Email: Thawkins@treasurer.state.md.us, Phone: 0000407935"
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Procurement Officer: Thomas Hawkins, State Treasurer's Office"
+        }
+      ],
+      "confidence": 0.97,
+      "notes": "Procurement officer contact coordinates"
     },
     "company_name": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "State of Maryland Treasurer's Office / Department of Information Technology (DoIT)",
+      "sources": [
+        {
+          "file": "Dell Laptops w_Extended Warranty - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "State of Maryland - Anne Arundel County / Treasurer's Office"
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "State of Maryland, Maryland State Treasurer's Office"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Issuing state agency identified"
     },
     "Bid Summary": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "State of Maryland PORFP for Dell Latitude 5550 business laptops equipped with Intel Core i5 processors, 16GB DDR5 RAM, 256GB SSD, and 3-Year ProSupport Plus Next Business Day Onsite Warranty.",
+      "sources": [
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "PORFP issued to acquire Dell Latitude 5550 systems with comprehensive 3-year warranty for Maryland state agency operations."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Executive summary generated from PORFP scope and specification sheets"
     },
     "Product Specification": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Dell Latitude 5550, 15.6\" FHD (1920x1080) Non-Touch, Intel Core i5-1335U (10 cores, up to 4.6GHz), 16GB DDR5 5600MHz RAM, 256GB PCIe NVMe SSD, Intel Iris Xe Graphics, 3-Cell 54Wh battery, 3-Year ProSupport Plus with Accidental Damage & NBD Onsite Service",
+      "sources": [
+        {
+          "file": "Dell_Laptop_Specs.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Specifications: 15.6\" FHD display, Intel Core i5-1335U, 16GB DDR5 RAM, 256GB M.2 PCIe SSD, 3-Year ProSupport Plus Next Business Day Onsite Warranty."
+        },
+        {
+          "file": "MD_PORFP_Dell_Laptops.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Mandatory Specs: 15.6\" display, Core i5, 16GB RAM, 3-year ProSupport warranty."
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Complete technical configuration from Dell specifications document"
     }
   },
   "addendum_changes": [],
   "validation": {
-    "passed": 0,
+    "passed": 20,
     "failed": 0,
-    "not_found": 0
+    "not_found": 0,
+    "issues": []
   }
 }

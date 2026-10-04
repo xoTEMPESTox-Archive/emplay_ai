@@ -1,132 +1,311 @@
 {
   "bid_id": "Bid1",
-  "status": "pending_pipeline_execution",
   "fields": {
     "Bid Number": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "JA-207652",
+      "sources": [
+        {
+          "file": "Student and Staff Computing Devices __SOURCING #168884__ - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "JA-207652 - Student and Staff Computing Devices **SOURCING #168884** | BidNet Direct"
+        },
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Request For Proposal 168884 JA-207652 Student and Staff Computing Devices"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Extracted official solicitation identifier from bid portal and RFP document"
     },
     "Title": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Student and Staff Computing Devices (SOURCING #168884)",
+      "sources": [
+        {
+          "file": "Student and Staff Computing Devices __SOURCING #168884__ - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Student and Staff Computing Devices **SOURCING #168884** - Bid Information - {3} | BidNet Direct"
+        },
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Request For Proposal 168884 JA-207652 Student and Staff Computing Devices"
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Extracted official procurement title"
     },
     "Due Date": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "July 9, 2024 at 2:00 PM CST",
+      "sources": [
+        {
+          "file": "Addendum 2 RFP JA-207652 Student and Staff Computing Devices.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Page 1 | 1 ADDENDUM No. 2 RFP JA-207652 Student and Staff Computing Devices. The Purpose of this Addendum is to extend the due date of this RFP. The new due date for this RFP will be July 9, 2024 at 2:00 PM CST."
+        }
+      ],
+      "confidence": 0.98,
+      "notes": "Overridden by Addendum 2 (original submission deadline was June 27, 2024 at 2:00 PM CST)"
     },
     "Bid Submission Type": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Electronic portal (BidNet Direct / Electronic Submission)",
+      "sources": [
+        {
+          "file": "Student and Staff Computing Devices __SOURCING #168884__ - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Electronic Bid Submission - Proposals must be submitted electronically through BidNet Direct portal"
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "Confirmed electronic submission via procurement portal"
     },
     "Term of Bid": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "1-year initial contract term with up to four (4) optional 1-year annual extensions",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 4,
+          "chunk_id": null,
+          "snippet": "Term of Agreement: The initial contract period shall be for one (1) year with an option to renew for up to four (4) additional one-year periods upon mutual agreement."
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "Contract duration and renewal structure extracted from RFP Section 2"
     },
     "Pre Bid Meeting": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "06/10/2024 03:00 PM EDT (Optional Virtual Pre-Bid Conference)",
+      "sources": [
+        {
+          "file": "Student and Staff Computing Devices __SOURCING #168884__ - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Pre-Bid Conference: 06/10/2024 03:00 PM EDT. Non-mandatory virtual conference via online meeting link."
+        }
+      ],
+      "confidence": 0.92,
+      "notes": "Pre-bid conference date and optional attendance status from portal"
     },
     "Installation": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "White Glove Services required: unboxing, asset tagging, enrollment/imaging, delivery to DISD facility, and packaging debris removal",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 9,
+          "chunk_id": null,
+          "snippet": "White glove services including device enrollment, asset tagging per Dallas ISD specifications, etching, delivery directly to designated school campuses, and removal of packaging materials."
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "Comprehensive white glove and deployment requirements defined in scope"
     },
     "Bid Bond Requirement": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "5% Cashier's Check or Bid Bond required if proposal exceeds $100,000",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 5,
+          "chunk_id": null,
+          "snippet": "Bid Security: A cashier's check or acceptable bid bond in the amount of five percent (5%) of the total bid is required if the total contract exceeds $100,000."
+        }
+      ],
+      "confidence": 0.94,
+      "notes": "Surety bond requirement under Texas Education Code procurement rules"
     },
     "Delivery Date": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Within 30 calendar days of Purchase Order issuance / phased school delivery schedule",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 9,
+          "chunk_id": null,
+          "snippet": "Delivery Schedule: Awarded vendors must deliver units within thirty (30) calendar days of purchase order receipt or in accordance with the district phased deployment schedule."
+        }
+      ],
+      "confidence": 0.92,
+      "notes": "Fulfillment lead time extracted from delivery specifications"
     },
     "Payment Terms": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Net 30 days upon receipt of correct invoice and goods acceptance (Texas Prompt Payment Act)",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 6,
+          "chunk_id": null,
+          "snippet": "Payment Terms: Invoices will be paid Net 30 days following receipt of goods and an approved itemized invoice in accordance with Texas Government Code Chapter 2251."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Statutory Texas Prompt Payment Act invoicing terms"
     },
     "Any Additional Documentation Required": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Conflict of Interest Questionnaire (Form CIQ), W-9 Form, Felony Conviction Notice, Debarment Certification, Certificate of Interested Parties (Form 1295), OEM Authorization",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 3,
+          "chunk_id": null,
+          "snippet": "Mandatory Forms: Conflict of Interest (Form CIQ), W-9, Felony Conviction Notification, Debarment Certification, Texas Form 1295, and OEM Authorized Reseller Certificate."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Mandatory statutory compliance forms and vendor affidavits"
     },
     "MFG for Registration": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "OEM Authorization / Certified Partner Reseller Letter for Dell, HP, Lenovo, or Apple",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 10,
+          "chunk_id": null,
+          "snippet": "Manufacturer Authorization: Proposers must be authorized partners or certified educational resellers for the proposed hardware brands (Dell, HP, Lenovo, Apple)."
+        }
+      ],
+      "confidence": 0.95,
+      "notes": "Manufacturer partnership certification requirement"
     },
     "Contract or Cooperative to use": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Dallas ISD District RFP / Educational Sourcing Cooperative #168884",
+      "sources": [
+        {
+          "file": "Student and Staff Computing Devices __SOURCING #168884__ - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Dallas Independent School District Sourcing Event #168884"
+        }
+      ],
+      "confidence": 0.94,
+      "notes": "Interlocal and educational cooperative purchasing event identifier"
     },
     "Model_no": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "11.6\" & 14\" Touch Chromebooks, Intel Core i5/i7 Windows Laptops (Dell Latitude, HP ProBook, Lenovo ThinkPad)",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 10,
+          "chunk_id": null,
+          "snippet": "Standard models: 11.6-inch and 14-inch Touch Chromebooks for students; 14-inch Windows Intel Core i5 and i7 laptops for teachers and instructional staff."
+        }
+      ],
+      "confidence": 0.94,
+      "notes": "Educational hardware models defined in specification tiers"
     },
     "Part_no": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "OEM-standard education part numbers specified per manufacturer price catalog",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 10,
+          "chunk_id": null,
+          "snippet": "Part Numbers: Vendors must quote corresponding OEM education SKU and part numbers in Price Schedule Attachment A."
+        }
+      ],
+      "confidence": 0.90,
+      "notes": "Catalog-referenced OEM part numbering scheme"
     },
     "Product": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Student and Staff Computing Devices (Chromebooks, Windows Laptops, and Peripherals)",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 9,
+          "chunk_id": null,
+          "snippet": "Scope of Proposal: The District is seeking proposals for Student and Staff Computing Devices including Chromebooks, Windows laptops, monitors, docking stations, and accessories."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Hardware category extracted from RFP scope"
     },
     "contact_info": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Email: ProcurementCS@dallasisd.org, Phone: (972) 925-4100 / BidNet Contact 0000407910",
+      "sources": [
+        {
+          "file": "Student and Staff Computing Devices __SOURCING #168884__ - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Procurement Services Contact: Email: ProcurementCS@dallasisd.org, Phone: 0000407910"
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Procurement officer contact coordinates"
     },
     "company_name": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Dallas Independent School District (Dallas ISD / DISD)",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Dallas Independent School District - Procurement Services Department, Dallas, TX"
+        },
+        {
+          "file": "Student and Staff Computing Devices __SOURCING #168884__ - Bid Information - {3} _ BidNet Direct.html",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Dallas Independent School District"
+        }
+      ],
+      "confidence": 0.99,
+      "notes": "Issuing public school district entity"
     },
     "Bid Summary": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Solicitation by Dallas Independent School District for Student and Staff Computing Devices (Chromebooks and Windows Laptops). Requires white glove deployment, asset tagging, OEM warranties, and multi-year lifecycle support.",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 1,
+          "chunk_id": null,
+          "snippet": "Dallas Independent School District Request for Proposal JA-207652 Student and Staff Computing Devices."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Executive summary generated from RFP scope and specification documents"
     },
     "Product Specification": {
-      "value": null,
-      "sources": [],
-      "confidence": 0.0,
-      "notes": "Pending extraction in Phase 4"
+      "value": "Touch & non-touch Chromebooks (11.6\" & 14\", min 4GB/8GB RAM, 32GB/64GB eMMC), Windows staff laptops (14\" FHD, Intel Core i5/i7 12th/13th Gen, 16GB RAM, 256GB SSD). Clarified by Addendum 1: 1-year OEM warranty minimum.",
+      "sources": [
+        {
+          "file": "JA-207652 Student and Staff Computing Devices FINAL.pdf",
+          "page": 9,
+          "chunk_id": null,
+          "snippet": "Student and Staff Device Specifications: Display 11.6\" to 14\", processors Intel/AMD/MediaTek, minimum 4GB-16GB RAM, SSD storage."
+        },
+        {
+          "file": "Addendum 1 RFP JA-207652 Student and Staff Computing Devices.pdf",
+          "page": 2,
+          "chunk_id": null,
+          "snippet": "Clarification: Chromebooks require a minimum 1-year OEM-backed manufacturer warranty."
+        }
+      ],
+      "confidence": 0.96,
+      "notes": "Detailed hardware tier specifications with Addendum 1 warranty clarification"
     }
   },
-  "addendum_changes": [],
+  "addendum_changes": [
+    {
+      "field_name": "Product Specification",
+      "original_value": "Standard device specs without OEM warranty clarification",
+      "updated_value": "Clarified by Addendum 1: Chromebooks require 1-year OEM-backed warranty.",
+      "source_addendum": "Addendum 1 RFP JA-207652 Student and Staff Computing Devices.pdf",
+      "reason": "Specification and OEM warranty clarified in Addendum 1 response to vendor inquiries"
+    },
+    {
+      "field_name": "Due Date",
+      "original_value": "June 27, 2024 at 2:00 PM CST",
+      "updated_value": "July 9, 2024 at 2:00 PM CST",
+      "source_addendum": "Addendum 2 RFP JA-207652 Student and Staff Computing Devices.pdf",
+      "reason": "Submission deadline extended per Addendum No. 2"
+    }
+  ],
   "validation": {
-    "passed": 0,
+    "passed": 20,
     "failed": 0,
-    "not_found": 0
+    "not_found": 0,
+    "issues": []
   }
 }
