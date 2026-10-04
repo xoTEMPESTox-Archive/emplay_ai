@@ -1,58 +1,69 @@
-# Deliverable: Demo Video & Live Walkthrough
+# Deliverable: Live Hosted Platform & Interactive Walkthrough
 
-This document provides links and instructions for evaluating the **RFP Intelligence Platform** via video presentation and interactive live commands.
-
----
-
-## 1. Demo Video (5–10 Minutes)
-
-- **Video Title:** RFP Intelligence Platform Walkthrough — Emplay AI Engineer Assignment
-- **Video Link:** [🎥 Watch Demonstration Video (Loom / Drive Link Placeholder)](https://loom.com/share/placeholder-rfp-intelligence-demo)
-- **Duration:** ~7 minutes
-
-### Video Agenda & Timestamps
-- `0:00 - 1:00` — **Introduction & Architecture Overview**: Dual-index hybrid search (Vector + BM25) and LangGraph agent workflow.
-- `1:00 - 2:30` — **Document Ingestion & Indexing**: Ingesting Bid1 and Bid2 HTML & PDF documents; table parsing and chunk metadata.
-- `2:30 - 4:00` — **Single-Command Bid Extraction**: Running `python main.py --bid ./Bid1`, watching agents coordinate in real time.
-- `4:00 - 5:00` — **Addendum Reconciliation & Validation**: Demonstrating how Addendum 2 overrides the initial due date, and how the Critic Agent enforces strict evidence grounding.
-- `5:00 - 6:00` — **Grounded Natural-Language Q&A**: Answering complex user queries with exact source citations (file name and page number).
-- `6:00 - 7:00` — **Retrieval Evaluation & Benchmarks**: Comparing dense vector vs. hybrid retrieval results.
+This deliverable provides access to the live cloud deployment of the **RFP Intelligence Platform**, along with instructions for live interactive verification across web UI, REST API, and CLI modes.
 
 ---
 
-## 2. Interactive Live Demo (2-Minute Quick Run)
+## 1. Live Cloud Deployment
 
-Evaluators can run the live system directly in their local environment:
+- **Public Live Application:** [🚀 https://priyanshu-emplayai.streamlit.app](https://priyanshu-emplayai.streamlit.app)
+- **Deployment Platform:** Streamlit Community Cloud
+- **Pre-configured Model:** `groq/openai/gpt-oss-120b` (Shared evaluation key pre-loaded; runs in < 3s)
+- **Custom Provider Support:** Evaluators can paste their own **Google Gemini**, **OpenAI**, or **Anthropic** key directly in the sidebar settings.
 
-### Step 1: Environment Setup
+---
+
+## 2. Platform Capabilities on the Live Demo
+
+Evaluators can explore all mandatory and bonus assignment requirements directly in the cloud application across 5 dedicated tabs:
+
+### 💬 Tab 1: RFP Intelligence Chat & Live Traces
+- **Grounded Q&A:** Ask complex questions across **Bid1** (Dallas ISD Student and Staff Computing Devices) and **Bid2** (State of Maryland Dell Laptops).
+- **Exact Citations:** Every answer cites source document filenames and exact page numbers.
+- **Query Decomposition Trace:** Click `🔍 Query Decomposition Steps` to inspect how natural-language queries are restructured into targeted sub-queries without meta-noise.
+- **Evidence Passages:** Click `📚 Source Evidence & Passages` to inspect the exact text chunks selected by the hybrid search engine and listwise reranker.
+- **Observability:** Live metrics display latency in seconds and model used per query.
+
+### 📊 Tab 2: Structured Extractions (20 Mandatory Fields)
+- Interactive viewer for [`Bid1.json`](outputs/Bid1.json) and [`Bid2.json`](outputs/Bid2.json).
+- Displays validation status (Passed, Failed, Not Found), confidence scores, and source citations for each of the 20 required fields.
+- Includes expandable raw JSON inspection.
+
+### ⚖️ Tab 3: Bid Comparison & Go/No-Go Decision
+- Side-by-side comparative analysis of Bid1 vs. Bid2 across hardware, warranties, bonding, delivery, and affidavits.
+- Automated evaluation against company capabilities emitting a strategic Go / No-Go recommendation.
+
+### 📈 Tab 4: Retrieval Evaluation Benchmark
+- Interactive quantitative benchmark table comparing **Dense Vector** vs. **BM25 Keyword** vs. **Hybrid (RRF $k=60$)** vs. **Hybrid + Listwise Reranker**.
+- Shows Recall@3, Recall@5, and Mean Reciprocal Rank (MRR) across 16 ground-truth queries.
+
+### 🏗️ Tab 5: Multi-Agent Architecture
+- Interactive Mermaid flowchart visualizing document ingestion, dual-index storage, hybrid retrieval, LangGraph agent coordination, and the validator feedback loop.
+
+---
+
+## 3. One-Click Local Reproduction
+
+In accordance with Section 9 of the assignment (*"The system must be runnable with one command after setup"*), evaluators can also run the entire platform locally with a single command:
+
+### macOS / Linux
 ```bash
-# Clone and navigate
-cd emplay_ai
-
-# Set API key in .env
-echo GEMINI_API_KEY=your_key_here > .env
+git clone https://github.com/xoTEMPESTox-Archive/emplay_ai.git
+cd emplay_ai/deliverables/source_code
+bash run.sh
 ```
 
-### Step 2: Run Extraction (One Command)
-```bash
-# Extract Bid1
-python main.py --bid "Assignment-Data-Statements (AI Engineer-Emplay Inc)/Bid1"
-
-# Or extract Bid2
-python main.py --bid "Assignment-Data-Statements (AI Engineer-Emplay Inc)/Bid2"
+### Windows (PowerShell)
+```powershell
+git clone https://github.com/xoTEMPESTox-Archive/emplay_ai.git
+cd emplay_ai/deliverables/source_code
+powershell -ExecutionPolicy Bypass -File .\run.ps1
 ```
 
-### Step 3: Run Interactive Grounded Q&A
+### Docker
 ```bash
-# Ask about deadline after addendums
-python main.py ask "What is the submission deadline for Bid1 after all addendums?"
-
-# Ask about affidavits
-python main.py ask "Which affidavits are required for the Dell laptop bid?" --bid-id Bid2
+docker compose up --build
 ```
 
-### Step 4: Launch REST API & Swagger UI
-```bash
-python main.py serve --host 127.0.0.1 --port 8000
-```
-Open interactive documentation in your browser at: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+The script automatically bootstraps the virtual environment, verifies dependencies, starts the FastAPI backend on port 8000, starts the Streamlit UI on port 8501, and opens the browser.
+
