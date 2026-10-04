@@ -68,7 +68,7 @@ class HybridSearchEngine:
         return self.persist_dir.parent / "bm25_cache.json"
 
     def _load_persisted_bm25(self) -> None:
-        """Load cached BM25 chunks if available on disk."""
+        """Load cached BM25 chunks if available on disk, with fallback search and auto-bootstrap."""
         path = self._bm25_cache_path()
         if path.exists():
             try:
@@ -81,6 +81,63 @@ class HybridSearchEngine:
                 logger.info("Loaded %d BM25 chunks from cache", len(self.bm25_chunks))
             except Exception as e:
                 logger.warning("Failed to load BM25 cache: %s", e)
+
+        if not self.bm25_chunks:
+            # Check alternative repository paths
+            alt_candidates = [
+                REPO_ROOT / "deliverables" / "source_code" / "data" / "processed" / "bm25_cache.json",
+                Path(__file__).resolve().parent.parent.parent.parent / "data" / "processed" / "bm25_cache.json",
+            ]
+            for ap in alt_candidates:
+                if ap.exists() and ap != path:
+                    try:
+                        with open(ap, "r", encoding="utf-8") as f:
+                            raw_data = json.load(f)
+                            self.bm25_chunks = [DocumentChunk(**item) for item in raw_data]
+                            self.bm25_corpus = [tokenize_for_bm25(c.text) for c in self.bm25_chunks]
+                            if self.bm25_corpus:
+                                self.bm25_model = BM25Okapi(self.bm25_corpus)
+                        logger.info("Loaded %d BM25 chunks from alternative path: %s", len(self.bm25_chunks), ap)
+                        self._save_persisted_bm25()
+                        break
+                    except Exception as e:
+                        logger.warning("Failed loading alternative BM25 cache from %s: %s", ap, e)
+
+        # Dynamic bootstrap if still empty
+        if not self.bm25_chunks:
+            self._auto_bootstrap_default_bids()
+
+    def _auto_bootstrap_default_bids(self) -> None:
+        """Auto-ingest default bids into BM25 if cache is missing (e.g. on fresh cloud deployment)."""
+        logger.info("Auto-bootstrapping BM25 chunks from assignment data...")
+        try:
+            from rfp_intelligence.ingestion.parser import IngestionPipeline
+            pipeline = IngestionPipeline()
+            data_roots = [
+                REPO_ROOT / "Assignment-Data-Statements (AI Engineer-Emplay Inc)",
+                Path(__file__).resolve().parent.parent.parent.parent.parent / "Assignment-Data-Statements (AI Engineer-Emplay Inc)",
+            ]
+            target_root = None
+            for dr in data_roots:
+                if dr.exists():
+                    target_root = dr
+                    break
+
+            if target_root:
+                all_chunks = []
+                for bid_name in ["Bid1", "Bid2"]:
+                    bp = target_root / bid_name
+                    if bp.exists():
+                        chunks = pipeline.ingest_bid_folder(bp, bid_id=bid_name)
+                        all_chunks.extend(chunks)
+                if all_chunks:
+                    self.bm25_chunks = all_chunks
+                    self.bm25_corpus = [tokenize_for_bm25(c.text) for c in self.bm25_chunks]
+                    self.bm25_model = BM25Okapi(self.bm25_corpus)
+                    self._save_persisted_bm25()
+                    logger.info("Auto-bootstrapped %d chunks into BM25 index", len(self.bm25_chunks))
+        except Exception as e:
+            logger.warning("Auto-bootstrapping failed: %s", e)
 
     def _save_persisted_bm25(self) -> None:
         """Save BM25 chunks to disk for persistence across runs."""

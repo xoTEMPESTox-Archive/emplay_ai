@@ -100,6 +100,45 @@ class AgentTools:
         api_key: Optional[str] = None,
     ) -> Dict[str, Any]:
         """Full agentic RAG loop: Decompose -> Multi-Query Retrieve -> Addenda Check -> Rerank -> Generate."""
+        import re
+
+        # Intercept greetings, identity questions, or help requests
+        cleaned_no_punct = re.sub(r"[^\w\s]", "", question.strip().lower())
+        greeting_patterns = [
+            r"^(hi|hello|hey|heya|howdy|greetings)\b",
+            r"^good\s*(morning|afternoon|evening|day)\b",
+            r"^(who|what)\s+(are\s+you|is\s+your\s+name)\b",
+            r"^what\s+can\s+you\s+do\b",
+            r"^(help|tell\s+me\s+about\s+yourself)\b",
+        ]
+        rfp_keywords = ["deadline", "due", "spec", "ram", "processor", "bid", "rfp", "affidavit", "warranty", "contract", "price", "dallas", "dell", "porfp"]
+        is_greeting = any(re.search(p, cleaned_no_punct) for p in greeting_patterns) and not any(k in question.lower() for k in rfp_keywords)
+
+        if is_greeting:
+            return {
+                "question": question,
+                "answer": (
+                    "Hello! I am your **RFP Intelligence Assistant**, an AI system designed to analyze and extract information from government and educational Request for Proposal (RFP) solicitations.\n\n"
+                    "I can help you review, search, and extract facts across:\n"
+                    "- **Bid1 (Dallas ISD JA-207652):** Student & Staff Computing Devices, Chromebook configurations, "
+                    "submission deadlines, Addendum 1 & 2 extensions, white-glove provisioning, and Texas compliance affidavits.\n"
+                    "- **Bid2 (State of Maryland 001IT836371):** Dell Latitude 5550 Laptops, 3-Year ProSupport Plus warranties, "
+                    "Maryland Contract & Mercury Affidavits, and Net 30 payment terms.\n"
+                    "- **Cross-Bid Analysis:** Side-by-side hardware spec comparisons, warranty terms, and bonding requirements.\n\n"
+                    "**Example questions you can ask me:**\n"
+                    "- *What is the submission deadline for Bid1 after all addendums?*\n"
+                    "- *What are the processor, RAM, and display specs for Bid1 vs Bid2?*\n"
+                    "- *Which affidavits are required for the Dell laptop bid?*\n"
+                    "- *Compare the warranty requirements between Bid1 and Bid2.*"
+                ),
+                "sub_queries": ["Conversational Greeting / Assistant Identity"],
+                "target_bid": "General",
+                "target_bids": [],
+                "is_comparative": False,
+                "passages": [],
+                "citations": [],
+            }
+
         catalog = self.engine.get_bid_catalog()
         
         # 1. Multi-Query Search with dynamic catalog and balanced partitioning

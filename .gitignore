@@ -52,15 +52,17 @@ htmlcov/
 .nox/
 
 # Project data & outputs
-**/data/processed/*
-!**/data/company_capabilities.json
-**/chroma/
+**/data/processed/semantic_cache.json
 **/test_chroma_tmp/
-**/bm25_cache.json
-**/semantic_cache.json
+**/tests/bm25_cache.json
 chroma_db/
-*.sqlite
 *.log
+
+# Allow pre-computed indices in git
+!**/data/company_capabilities.json
+!**/data/processed/bm25_cache.json
+!**/data/processed/chroma/
+!**/data/processed/chroma/**
 
 # Streamlit secrets (Cloud & Local)
 .streamlit/secrets.toml

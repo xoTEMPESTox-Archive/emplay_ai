@@ -44,8 +44,8 @@ OUTPUTS_DIR = DELIVERABLES_DIR / "outputs"
 st.sidebar.title("⚙️ Model & API Settings")
 
 PROVIDER_MODELS = {
-    "Google Gemini (Recommended)": "gemini/gemini-2.5-flash",
-    "Groq (Fast Cloud)": "groq/openai/gpt-oss-120b",
+    "Groq Cloud (Default - Fast LPU)": "groq/openai/gpt-oss-120b",
+    "Google Gemini": "gemini/gemini-2.5-flash",
     "OpenAI": "openai/gpt-4o-mini",
     "Anthropic Claude": "anthropic/claude-3-5-sonnet-20241022",
     "Local Ollama (Offline)": "ollama/qwen2.5:3b",
@@ -63,8 +63,8 @@ user_api_key = st.sidebar.text_input(
 
 st.sidebar.info(
     "ℹ️ **Evaluator Demo Notice:**\n\n"
-    "A free shared Groq API key is pre-configured for evaluation, but is rate-limited and expires on **October 12, 2026** (7-day duration).\n\n"
-    "If you encounter a rate limit or quota notice, simply paste your personal Gemini, OpenAI, or Groq API key above!"
+    "Default runs with Groq Cloud LPU. If you encounter a rate limit or wish to evaluate another model, "
+    "simply paste your personal Gemini, OpenAI, or Groq API key above!"
 )
 
 st.sidebar.divider()
@@ -128,100 +128,106 @@ with tab_chat:
             }
         ]
 
-    # Render existing messages
-    for msg in st.session_state.messages:
-        with st.chat_message(msg["role"]):
-            st.markdown(msg["content"])
-            if msg.get("sub_queries"):
-                with st.expander("🔍 Query Decomposition Steps", expanded=False):
-                    st.markdown("**Sub-Queries Executed:**")
-                    for sq in msg["sub_queries"]:
-                        st.markdown(f"- `{sq}`")
-            if msg.get("citations"):
-                with st.expander("📚 Source Evidence & Passages", expanded=False):
-                    for cit in msg["citations"]:
-                        bid_prefix = f"[{cit['bid']}] " if cit.get("bid") else ""
-                        st.markdown(f"- **{bid_prefix}{cit['file']}** (Page {cit['page']}):\n  > *\"{cit['snippet']}\"*")
+    # Dedicated container holding all conversation messages above input
+    chat_container = st.container()
 
-    # User chat input
-    if prompt := st.chat_input("Ask a question about the RFP documents..."):
-        st.session_state.messages.append({"role": "user", "content": prompt, "citations": [], "sub_queries": [], "traces": {}})
-        with st.chat_message("user"):
-            st.markdown(prompt)
-
-        with st.chat_message("assistant"):
-            target_bid = None if bid_filter == "All Bids" else bid_filter
-            effective_key = user_api_key.strip() if user_api_key else None
-            if not effective_key and "groq" in active_model:
-                effective_key = settings.groq_api_key or os.getenv("GROQ_API_KEY", "")
-
-            try:
-                start_exec = time.time()
-                with st.status("Executing Agentic RAG Pipeline...", expanded=False) as status:
-                    st.write("🔄 Decomposing query into targeted sub-queries...")
-                    rag_result = agent_tools.run_agentic_rag(
-                        prompt,
-                        bid_id=target_bid,
-                        model=active_model,
-                        api_key=effective_key,
-                    )
-                    latency = round(time.time() - start_exec, 2)
-                    st.write(f"🔍 **Sub-Queries Generated:** `{', '.join(rag_result['sub_queries'])}`")
-                    st.write(f"🎯 **Target Bid Scope:** `{rag_result['target_bid'] or 'Cross-Bid'}`")
-                    st.write(f"📄 **Evidentiary Passages Selected:** {len(rag_result['passages'])} passages")
-                    st.write(f"⏱️ **Total Execution Time:** `{latency}s`")
-                    status.update(label=f"RAG Retrieval Complete ({latency}s)!", state="complete")
-
-                full_response = rag_result["answer"]
-                citations_data = rag_result["citations"]
-                sub_queries = rag_result["sub_queries"]
-
-                # Stream response word-by-word
-                def response_generator():
-                    words = full_response.split(" ")
-                    for i, word in enumerate(words):
-                        yield word + (" " if i < len(words) - 1 else "")
-                        time.sleep(0.01)
-
-                st.write_stream(response_generator())
-
-                # Render inspection expanders
-                if sub_queries:
+    with chat_container:
+        for msg in st.session_state.messages:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+                if msg.get("sub_queries"):
                     with st.expander("🔍 Query Decomposition Steps", expanded=False):
                         st.markdown("**Sub-Queries Executed:**")
-                        for sq in sub_queries:
+                        for sq in msg["sub_queries"]:
                             st.markdown(f"- `{sq}`")
-
-                if citations_data:
+                if msg.get("citations"):
                     with st.expander("📚 Source Evidence & Passages", expanded=False):
-                        for cit in citations_data:
+                        for cit in msg["citations"]:
                             bid_prefix = f"[{cit['bid']}] " if cit.get("bid") else ""
                             st.markdown(f"- **{bid_prefix}{cit['file']}** (Page {cit['page']}):\n  > *\"{cit['snippet']}\"*")
 
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "content": full_response,
-                    "citations": citations_data,
-                    "sub_queries": sub_queries,
-                    "traces": {"latency_sec": latency, "model": active_model},
-                })
+    # Chat input anchored at the bottom
+    if prompt := st.chat_input("Ask a question about the RFP documents..."):
+        st.session_state.messages.append({"role": "user", "content": prompt, "citations": [], "sub_queries": [], "traces": {}})
+        
+        with chat_container:
+            with st.chat_message("user"):
+                st.markdown(prompt)
 
-            except Exception as e:
-                err_str = str(e)
-                if "RATE_LIMIT" in err_str:
-                    st.error(
-                        "⚠️ **API Rate Limit / Quota Exceeded**\n\n"
-                        "The current API key has hit its rate limit or token quota.\n\n"
-                        "👉 **Resolution:** Please select your provider and paste your personal API key (e.g. Google Gemini, Groq, or OpenAI) in the **⚙️ Model & API Settings** panel on the left sidebar to continue immediately."
-                    )
-                elif "AUTH_ERROR" in err_str:
-                    st.error(
-                        "🔑 **API Authentication Failed**\n\n"
-                        "The provided API key is invalid or unauthorized.\n\n"
-                        "👉 **Resolution:** Please verify your API key in the **⚙️ Model & API Settings** panel on the left sidebar."
-                    )
-                else:
-                    st.error(f"❌ An error occurred during processing: {e}")
+            with st.chat_message("assistant"):
+                target_bid = None if bid_filter == "All Bids" else bid_filter
+                effective_key = user_api_key.strip() if user_api_key else None
+                if not effective_key and "groq" in active_model:
+                    effective_key = settings.groq_api_key or os.getenv("GROQ_API_KEY", "")
+
+                try:
+                    start_exec = time.time()
+                    with st.status("Executing Agentic RAG Pipeline...", expanded=False) as status:
+                        st.write("🔄 Decomposing query into targeted sub-queries...")
+                        rag_result = agent_tools.run_agentic_rag(
+                            prompt,
+                            bid_id=target_bid,
+                            model=active_model,
+                            api_key=effective_key,
+                        )
+                        latency = round(time.time() - start_exec, 2)
+                        st.write(f"🔍 **Sub-Queries Generated:** `{', '.join(rag_result['sub_queries'])}`")
+                        st.write(f"🎯 **Target Bid Scope:** `{rag_result['target_bid'] or 'Cross-Bid'}`")
+                        st.write(f"📄 **Evidentiary Passages Selected:** {len(rag_result['passages'])} passages")
+                        st.write(f"⏱️ **Total Execution Time:** `{latency}s`")
+                        status.update(label=f"RAG Retrieval Complete ({latency}s)!", state="complete")
+
+                    full_response = rag_result["answer"]
+                    citations_data = rag_result["citations"]
+                    sub_queries = rag_result["sub_queries"]
+
+                    # Stream response word-by-word
+                    def response_generator():
+                        words = full_response.split(" ")
+                        for i, word in enumerate(words):
+                            yield word + (" " if i < len(words) - 1 else "")
+                            time.sleep(0.01)
+
+                    st.write_stream(response_generator())
+
+                    # Render inspection expanders
+                    if sub_queries:
+                        with st.expander("🔍 Query Decomposition Steps", expanded=False):
+                            st.markdown("**Sub-Queries Executed:**")
+                            for sq in sub_queries:
+                                st.markdown(f"- `{sq}`")
+
+                    if citations_data:
+                        with st.expander("📚 Source Evidence & Passages", expanded=False):
+                            for cit in citations_data:
+                                bid_prefix = f"[{cit['bid']}] " if cit.get("bid") else ""
+                                st.markdown(f"- **{bid_prefix}{cit['file']}** (Page {cit['page']}):\n  > *\"{cit['snippet']}\"*")
+
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "content": full_response,
+                        "citations": citations_data,
+                        "sub_queries": sub_queries,
+                        "traces": {"latency_sec": latency, "model": active_model},
+                    })
+
+                except Exception as e:
+                    err_str = str(e)
+                    if "RATE_LIMIT" in err_str:
+                        st.error(
+                            "⚠️ **API Rate Limit / Quota Exceeded**\n\n"
+                            "The current API key has hit its rate limit or token quota.\n\n"
+                            "👉 **Resolution:** Please select your provider and paste your personal API key (e.g. Google Gemini, Groq, or OpenAI) in the **⚙️ Model & API Settings** panel on the left sidebar to continue immediately."
+                        )
+                    elif "AUTH_ERROR" in err_str:
+                        st.error(
+                            "🔑 **API Authentication Failed**\n\n"
+                            "The provided API key is invalid or unauthorized.\n\n"
+                            "👉 **Resolution:** Please verify your API key in the **⚙️ Model & API Settings** panel on the left sidebar."
+                        )
+                    else:
+                        st.error(f"❌ An error occurred during processing: {e}")
+        st.rerun()
 
 # ==============================================================================
 # TAB 2: Structured Extractions (20 Fields)

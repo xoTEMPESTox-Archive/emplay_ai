@@ -31,11 +31,11 @@ class Settings(BaseSettings):
 
     # Provider & Model Settings (LiteLLM model identifiers)
     llm_model: str = Field(
-        default="gemini/gemini-2.5-flash",
+        default="groq/openai/gpt-oss-120b",
         validation_alias=AliasChoices("LLM_MODEL", "AI_MODEL"),
     )
     validator_llm_model: str = Field(
-        default="gemini/gemini-2.5-flash",
+        default="groq/openai/gpt-oss-120b",
         validation_alias=AliasChoices("VALIDATOR_LLM_MODEL", "AI_MODEL"),
     )
     embedding_model: str = Field(
