@@ -1,5 +1,19 @@
 """Document ingestion and parsing module."""
 
-from rfp_intelligence.ingestion.parser import BaseDocumentParser, IngestionPipeline
+from rfp_intelligence.ingestion.parser import (
+    HTMLDocumentParser,
+    PDFDocumentParser,
+    IngestionPipeline,
+    clean_text,
+    classify_document,
+    chunk_text,
+)
 
-__all__ = ["BaseDocumentParser", "IngestionPipeline"]
+__all__ = [
+    "HTMLDocumentParser",
+    "PDFDocumentParser",
+    "IngestionPipeline",
+    "clean_text",
+    "classify_document",
+    "chunk_text",
+]

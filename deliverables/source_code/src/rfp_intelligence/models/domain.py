@@ -31,6 +31,9 @@ class DocumentMetadata(BaseModel):
     doc_date: Optional[str] = Field(
         default=None, description="Document issue/publication date"
     )
+    is_amendment: bool = Field(default=False, description="True if document is an addendum/amendment")
+    is_operative_clause: bool = Field(default=False, description="True if chunk contains operative amendment terms")
+    hierarchy_level: int = Field(default=1, description="Document hierarchy: 1=Base RFP, 2=Addenda/Amendments")
     extra: Dict[str, Any] = Field(
         default_factory=dict, description="Arbitrary additional metadata"
     )
