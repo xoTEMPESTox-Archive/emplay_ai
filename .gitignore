@@ -52,11 +52,16 @@ htmlcov/
 .nox/
 
 # Project data & outputs
-data/processed/*
-!data/processed/.gitkeep
-outputs/*
-!outputs/.gitkeep
+**/data/processed/*
+!**/data/company_capabilities.json
+**/chroma/
+**/test_chroma_tmp/
+**/bm25_cache.json
+**/semantic_cache.json
 chroma_db/
 *.sqlite
-*.sqlite3
 *.log
+
+# Streamlit secrets (Cloud & Local)
+.streamlit/secrets.toml
+**/.streamlit/secrets.toml
