@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import chromadb
 from rank_bm25 import BM25Okapi
 
-from rfp_intelligence.config import settings
+from rfp_intelligence.config import REPO_ROOT, settings
 from rfp_intelligence.models.domain import (
     DocType,
     DocumentChunk,
@@ -48,6 +48,7 @@ class HybridSearchEngine:
     """Hybrid search engine with vector similarity, BM25, and Reciprocal Rank Fusion."""
 
     def __init__(self, persist_dir: Optional[Path] = None) -> None:
+        self.is_custom_persist = persist_dir is not None
         self.persist_dir = persist_dir or settings.vector_db_dir
         self.persist_dir.mkdir(parents=True, exist_ok=True)
 
@@ -65,6 +66,8 @@ class HybridSearchEngine:
         self._load_persisted_bm25()
 
     def _bm25_cache_path(self) -> Path:
+        if self.is_custom_persist:
+            return self.persist_dir / "bm25_cache.json"
         return self.persist_dir.parent / "bm25_cache.json"
 
     def _load_persisted_bm25(self) -> None:
@@ -81,6 +84,10 @@ class HybridSearchEngine:
                 logger.info("Loaded %d BM25 chunks from cache", len(self.bm25_chunks))
             except Exception as e:
                 logger.warning("Failed to load BM25 cache: %s", e)
+
+        # If a custom persist directory was provided (e.g. unit test fixtures), maintain clean isolation
+        if self.is_custom_persist:
+            return
 
         if not self.bm25_chunks:
             # Check alternative repository paths
